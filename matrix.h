@@ -1,5 +1,5 @@
 /*
-Matrix, a general matrix libary
+MatrixLib, a general matrix libary
 	Copyright (C) 2016  Francisco Anderson Bezerra Rodrigues
 
 	This program is free software: you can redistribute it and/or modify
@@ -56,8 +56,10 @@ Matrix MatrixIdentity(int oneDimensionSize);
 Matrix MatrixAdd(Matrix, Matrix, bool resultInTheFirstMatrix, (void*)(*ElementAddFunction)(void*, void*));
 Matrix MatrixScalarMultiplication(void* scalar, bool resultInTheSameMatrix, (void*)(*ElementScalarMultFunction)(void* scalar, void* element));
 Matrix MatrixTranspose(Matrix, bool resultInTheSameMatrix);
-Matrix MatrixMultiplication(Matrix, Matrix, bool resultInTheFirstMatrix, );
+Matrix MatrixMultiplication(Matrix, Matrix, bool resultInTheFirstMatrix, (void*)(*ElementMultFunction)(void* element1, void* element2));
 Matrix MatrixCompare(Matrix, Matrix, Comparison);
+Matrix MatrixElementBinaryOperation(Matrix , Matrix, (void*)(*ElementMultFunction)(void* element1, void* element2));
+Matrix MatrixElementUnaryOperation(Matrix , Matrix, (void*)(*ElementMultFunction)(void* element));
 void* MatrixMaxElement(Matrix);
 void* MatrixMinElement(Matrix);
 void* MatrixGetElement(int line, int column);
