@@ -16,6 +16,9 @@ MatrixLib, a general matrix libary
 	along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
+#ifndef MATRIX_H
+#define MATRIX_H
+
 #include<stdbool.h>
 #include<stdlib.h>
 
@@ -73,4 +76,4 @@ Matrix* MatrixElementDivision(Matrix*, Matrix*, bool resultInTheFirstMatrix);
 int MatrixColumnsNumber(Matrix*);
 int MatrixLinesNumber(Matrix*);
 
-
+#endif
