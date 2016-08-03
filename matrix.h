@@ -57,6 +57,7 @@ enum type
 typedef enum type Type;
 
 Matrix* NewMatrix(int lines, int columns, size_t elementSize);
+Matrix* NewMatrixAndInitializeElements(int lines, int columns, size_t elementSize, void * defaultElement);
 void DeleteMatrix(Matrix*);
 Matrix* MatrixCopy(Matrix*);
 Matrix* MatrixIdentity(int oneDimensionSize);
