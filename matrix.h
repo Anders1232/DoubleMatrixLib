@@ -15,6 +15,10 @@ MatrixLib, a general matrix libary
 	You should have received a copy of the GNU General Public License
 	along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
+
+#include<stdbool.h>
+#include<stdlib.h>
+
 struct matrix
 {
 	bool isInvalid;
@@ -23,7 +27,7 @@ struct matrix
 	int singleElementSize;
 	void *elements;
 };
-typedef struct matrix* Matrix;
+typedef struct matrix Matrix;
 
 enum comparison
 {
@@ -32,7 +36,7 @@ enum comparison
 	EQUAL,
 	LESS_OR_EQUAL,
 	LESS
-}
+};
 typedef enum comparison Comparison;
 
 enum type
@@ -46,27 +50,27 @@ enum type
 	FLOAT,
 	DOUBLE,
 	LONG_DOUBLE
-}
+};
 typedef enum type Type;
 
-Matrix NewMatrix(int lines, int columns, int elementSize);
-void DeleteMatrix(Matrix);
-Matrix MatrixCopy(Matrix);
-Matrix MatrixIdentity(int oneDimensionSize);
-Matrix MatrixAdd(Matrix, Matrix, bool resultInTheFirstMatrix, (void*)(*ElementAddFunction)(void*, void*));
-Matrix MatrixScalarMultiplication(void* scalar, bool resultInTheSameMatrix, (void*)(*ElementScalarMultFunction)(void* scalar, void* element));
-Matrix MatrixTranspose(Matrix, bool resultInTheSameMatrix);
-Matrix MatrixMultiplication(Matrix, Matrix, bool resultInTheFirstMatrix, (void*)(*ElementMultFunction)(void* element1, void* element2));
-Matrix MatrixCompare(Matrix, Matrix, Comparison);
-Matrix MatrixElementBinaryOperation(Matrix , Matrix, (void*)(*ElementMultFunction)(void* element1, void* element2));
-Matrix MatrixElementUnaryOperation(Matrix , Matrix, (void*)(*ElementMultFunction)(void* element));
-void* MatrixMaxElement(Matrix);
-void* MatrixMinElement(Matrix);
+Matrix* NewMatrix(int lines, int columns, size_t elementSize);
+void DeleteMatrix(Matrix*);
+Matrix* MatrixCopy(Matrix*);
+Matrix* MatrixIdentity(int oneDimensionSize);
+Matrix* MatrixAdd(Matrix*, Matrix*, bool resultInTheFirstMatrix, void*(*ElementAddFunction)(void*, void*));
+Matrix* MatrixScalarMultiplication(void* scalar, bool resultInTheSameMatrix, void*(*ElementScalarMultFunction)(void* scalar, void* element));
+Matrix* MatrixTranspose(Matrix*, bool resultInTheSameMatrix);
+Matrix* MatrixMultiplication(Matrix*, Matrix*, bool resultInTheFirstMatrix, void*(*ElementMultFunction)(void* element1, void* element2));
+Matrix* MatrixCompare(Matrix*, Matrix*, Comparison);
+Matrix* MatrixElementBinaryOperation(Matrix* , Matrix*, void*(*ElementMultFunction)(void* element1, void* element2));
+Matrix* MatrixElementUnaryOperation(Matrix* , Matrix*, void*(*ElementMultFunction)(void* element));
+void* MatrixMaxElement(Matrix*);
+void* MatrixMinElement(Matrix*);
 void* MatrixGetElement(int line, int column);
 void MatrixSetElement(int line, int column, void* Element);
-Matrix MatrixKroneckerProduct(Matrix, Matrix, bool resultInTheFirstMatrix);
-Matrix MatrixElementDivision(Matrix, Matrix, bool resultInTheFirstMatrix);
-int MatrixColumnsNumber(Matrix);
-int MatrixLinesNumber(Matrix);
+Matrix* MatrixKroneckerProduct(Matrix*, Matrix*, bool resultInTheFirstMatrix);
+Matrix* MatrixElementDivision(Matrix*, Matrix*, bool resultInTheFirstMatrix);
+int MatrixColumnsNumber(Matrix*);
+int MatrixLinesNumber(Matrix*);
 
 
