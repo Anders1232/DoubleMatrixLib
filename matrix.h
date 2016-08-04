@@ -24,7 +24,7 @@ MatrixLib, a general matrix libary
 
 struct matrix
 {
-	bool isInvalid;
+	bool isValid;
 	int lines;
 	int columns;
 	int singleElementSize;
@@ -60,8 +60,8 @@ Matrix* NewMatrix(int lines, int columns, size_t elementSize);
 Matrix* NewMatrixAndInitializeElements(int lines, int columns, size_t elementSize, void * defaultElement);
 void DeleteMatrix(Matrix*);
 Matrix* MatrixCopy(Matrix*);
-Matrix* MatrixIdentity(int oneDimensionSize);
-Matrix* MatrixAdd(Matrix*, Matrix*, bool resultInTheFirstMatrix, void*(*ElementAddFunction)(void*, void*));
+Matrix* MatrixIdentity(int oneDimensionSize, size_t elementSize, void* zero, void *one);
+Matrix* MatrixAdd(Matrix*, Matrix*, bool resultInTheFirstMatrix, void (*ElementAddFunction)(void* destiny,void* firstOperator, void* secondOperator));
 Matrix* MatrixScalarMultiplication(void* scalar, bool resultInTheSameMatrix, void*(*ElementScalarMultFunction)(void* scalar, void* element));
 Matrix* MatrixTranspose(Matrix*, bool resultInTheSameMatrix);
 Matrix* MatrixMultiplication(Matrix*, Matrix*, bool resultInTheFirstMatrix, void*(*ElementMultFunction)(void* element1, void* element2));
@@ -76,5 +76,6 @@ Matrix* MatrixKroneckerProduct(Matrix*, Matrix*, bool resultInTheFirstMatrix);
 Matrix* MatrixElementDivision(Matrix*, Matrix*, bool resultInTheFirstMatrix);
 int MatrixColumnsNumber(Matrix*);
 int MatrixLinesNumber(Matrix*);
+bool MatrixHaveSameDimensionsAndSameElementSize(Matrix*, Matrix*);
 
 #endif
