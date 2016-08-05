@@ -108,9 +108,10 @@ Matrix* MatrixAdd(Matrix* m1, Matrix* m2, bool resultInTheFirstMatrix, void (*El
 			return NULL;
 		}
 	}
-	void *aux1= m1->elements;
-	void *aux2= m2->elements;
-	void *aux3= ret->elements;
+	void *aux1, *aux2, *aux3;
+	aux1= m1->elements;
+	aux2= m2->elements;
+	aux3= ret->elements;
 	int cont, numberOfElements= (m1->columns)*(m1->lines);
 	int elementSize= m1->singleElementSize;
 	for(cont=0; cont < numberOfElements; cont++)
@@ -119,6 +120,40 @@ Matrix* MatrixAdd(Matrix* m1, Matrix* m2, bool resultInTheFirstMatrix, void (*El
 		aux1= ((uint8_t*)aux1)+elementSize;
 		aux2= ((uint8_t*)aux2)+elementSize;
 		aux3= ((uint8_t*)aux3)+elementSize;
+	}
+	return ret;
+}
+
+Matrix* MatrixScalarMultiplication(void* scalar, Matrix *matrix, bool resultInTheSameMatrix, void(*ElementScalarMultFunction)(void *result,void* scalar, void* element))
+{
+	if(matrix == NULL)
+	{
+		return NULL;
+	}
+	Matrix* ret;
+	if(resultInTheSameMatrix)
+	{
+		ret= matrix;
+	}
+	else
+	{
+		ret= NewMatrix(matrix->lines, matrix->columns, matrix-> singleElementSize);
+		if(ret== NULL)
+		{
+			return NULL;
+		}
+	}
+	void *aux1, *aux2;
+	aux1= matrix->elements;
+	aux2= ret->elements;
+	int cont, numberOfElements;
+	numberOfElements= (matrix->columns)*(matrix->lines);
+	int elementSize= matrix->singleElementSize;
+	for(cont=0; cont < numberOfElements; cont++)
+	{
+		(*ElementScalarMultFunction)(aux2, scalar, aux1);
+		aux1= ((uint8_t*)aux1)+elementSize;
+		aux2= ((uint8_t*)aux2)+elementSize;
 	}
 	return ret;
 }

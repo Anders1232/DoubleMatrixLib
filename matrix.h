@@ -62,7 +62,7 @@ void DeleteMatrix(Matrix*);
 Matrix* MatrixCopy(Matrix*);
 Matrix* MatrixIdentity(int oneDimensionSize, size_t elementSize, void* zero, void *one);
 Matrix* MatrixAdd(Matrix*, Matrix*, bool resultInTheFirstMatrix, void (*ElementAddFunction)(void* destiny,void* firstOperator, void* secondOperator));
-Matrix* MatrixScalarMultiplication(void* scalar, bool resultInTheSameMatrix, void*(*ElementScalarMultFunction)(void* scalar, void* element));
+Matrix* MatrixScalarMultiplication(void* scalar, Matrix *matrix, bool resultInTheSameMatrix, void(*ElementScalarMultFunction)(void *result,void* scalar, void* element));
 Matrix* MatrixTranspose(Matrix*, bool resultInTheSameMatrix);
 Matrix* MatrixMultiplication(Matrix*, Matrix*, bool resultInTheFirstMatrix, void*(*ElementMultFunction)(void* element1, void* element2));
 Matrix* MatrixCompare(Matrix*, Matrix*, Comparison);
