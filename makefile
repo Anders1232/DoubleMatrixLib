@@ -1,16 +1,16 @@
 flags= -Wall -pedantic -c
 
-matrix.o: matrix.c matrix.h
-	gcc matrix.c $(flags)
+matrix.o: DoubleMatrixLib.c DoubleMatrixLib.h
+	gcc DoubleMatrixLib.c $(flags)
 clear:
 	rm -r *.o
 all:
 	rm -r *.o
-	gcc matrix.c $(flags)
+	gcc DoubleMatrixLib.c $(flags)
 c90:
-	gcc matrix.c $(flags) -std=c90
+	gcc DoubleMatrixLib.c $(flags) -std=c90
 c99:
-	gcc matrix.c $(flags) -std=c99
+	gcc DoubleMatrixLib.c $(flags) -std=c99
 c11:
-	gcc matrix.c $(flags) -std=c11
+	gcc DoubleMatrixLib.c $(flags) -std=c11
 
